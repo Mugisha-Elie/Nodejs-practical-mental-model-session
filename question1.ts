@@ -1,4 +1,5 @@
 import express from 'express'
+import { Request, Response } from 'express';
 
 const app = express();
 app.use(express.json());
@@ -25,12 +26,13 @@ app.get('/convert', (req: Request, res: Response): void => {
 
   const numericAmount = Number(amount);
   if (isNaN(numericAmount) || numericAmount <= 0) {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       error: {
         message: 'The amount provided must be a valid positive number'
       }
     })
+    return;
   }
 
 
@@ -38,12 +40,14 @@ app.get('/convert', (req: Request, res: Response): void => {
   const rate = ConversionRates[currencyStr];
 
   if (!rate) {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       error: {
         message: 'Accepted currency are: usd, eur, gbp. The currency you provided is unsupported'
       }
     })
+
+    return;
   }
 
   const convertedAmount = numericAmount * rate;
