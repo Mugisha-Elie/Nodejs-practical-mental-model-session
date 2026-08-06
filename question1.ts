@@ -16,12 +16,13 @@ app.get('/convert', (req: Request, res: Response): void => {
   const { amount, currency } = req.query;
 
   if (!amount || !currency) {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       error: {
         message: 'amount and currency are required query parameters!'
       }
     })
+    return;
   }
 
   const numericAmount = Number(amount);
