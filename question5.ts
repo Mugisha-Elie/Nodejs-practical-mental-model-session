@@ -49,7 +49,7 @@ app.post('/register', (req: Request, res: Response) => {
 
   users.push(newUser)
   res.status(201).json(newUser)
-})
+}) 
 
 
 app.listen(3000, () => console.log("Server listening on http://localhost:3000"));
