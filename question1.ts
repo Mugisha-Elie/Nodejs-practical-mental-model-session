@@ -51,9 +51,9 @@ app.get('/convert', (req: Request, res: Response): void => {
   res.status(200).json({
     success: true,
     data: {
-      amount: numericAmount,
-      currency: currencyStr,
-      result: convertedAmount
+      input: { amount: numericAmount, currency: currencyStr },
+      convertedAmount,
+      unit: "RWF"
     }
   })
 })
